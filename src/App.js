@@ -1,19 +1,29 @@
-import logo from './logo.svg';
 import './App.css';
 
-function App(props) {
-  const subject = props.subject;
+function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Hello {subject}!
-        </p>
-        <Perfil />
-        <br />
-        <MyButton />
-      </header>
-    </div>
+    <primeraForma />
+  );
+}
+
+function primeraForma(){
+  return (
+    <>
+    <h1>Página Prueba</h1>
+    <hr />
+      <p>
+        <label>
+          Soy Alumno
+          <input type="radio" name="opcionAlumno" value="option1"/>
+        </label>
+        <br/>
+        <br/>
+        <label>
+          Soy Administrador
+          <input type="radio" name="opcionAdmin" value="option2"/>
+        </label>
+      </p>
+  </>
   );
 }
 
@@ -38,6 +48,38 @@ function Perfil(){
           }}
       />
     </>
+  );
+}
+
+function formaUsuario(){
+  return(
+    <form>
+      <h3>Forma para el Usuario</h3>
+      <label>
+        Nombre:
+        <input type='text' name='nombre'/>
+        </label>
+      <label>
+        Contraseña:
+        <input type='text' name='contraseña'/>
+      </label>
+    </form>
+  );
+}
+
+function formaAdmin(){
+  return(
+    <form>
+      <h3>Forma para el Administrador</h3>
+      <label>
+        Nombre:
+        <input type='text' name='nombre'/>
+        </label>
+      <label>
+        Contraseña:
+        <input type='text' name='contraseña'/>
+      </label>
+    </form>
   );
 }
 
