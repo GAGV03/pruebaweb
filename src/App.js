@@ -1,24 +1,48 @@
 import logo from './logo.svg';
 import './App.css';
 
-function App() {
+function App(props) {
+  const subject = props.subject;
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Last time i edit <code>src/App.js</code> and save to reload.
+          Hello {subject}!
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <Perfil />
+        <br />
+        <MyButton />
       </header>
     </div>
+  );
+}
+
+const personaje = {
+  nombre : 'Gustavo Gutiérrez',
+  imagen : 'https://m.media-amazon.com/images/I/71vLOiPjrYL._AC_SX679_.jpg',
+  edad: 20,
+  tamañoImagen:30
+}
+
+function Perfil(){
+  return(
+    <>
+      <h2>{personaje.nombre}</h2>
+      <img
+          className='imagenPerfil'
+          src={personaje.imagen}
+          alt={'FotoDe'+personaje.nombre}
+          style={{
+            width:personaje.tamañoImagen,
+            height:personaje.tamañoImagen
+          }}
+      />
+    </>
+  );
+}
+
+function MyButton(){
+  return (<button>Soy un boton</button>
   );
 }
 
