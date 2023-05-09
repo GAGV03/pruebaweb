@@ -1,6 +1,6 @@
 import './App.css';
 
-function App() {
+export default function App() {
   return (
     <primeraForma />
   );
@@ -88,4 +88,3 @@ function MyButton(){
   );
 }
 
-export default App;
