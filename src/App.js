@@ -1,11 +1,13 @@
 import './App.css';
 import React, {useState} from 'react';
 
+
+
 export default function App() {
   let forma;
   if(Primeraforma.tipoUsuario === "Administrador"){
     forma = <FormaAdmin/>
-  } else {
+  } else if(Primeraforma.tipoUsuario === "Alumno"){
     forma = <FormaAlumno/>
   }
   return (
@@ -20,6 +22,11 @@ export default function App() {
 
 function Primeraforma(){
 const [tipoUsuario,setTipoUsuario] = useState("inidentificado");
+
+const onOptionChange = e =>{
+  setTipoUsuario(e.target.value)
+}
+
   return (
     <>
     <h1>Página Prueba</h1>
@@ -27,13 +34,25 @@ const [tipoUsuario,setTipoUsuario] = useState("inidentificado");
       <p>
         <label>
           Soy Alumno
-          <input type="radio" name="opcionAlumno" value="perfil" checked={() => setTipoUsuario("Alumno")}/>
+          <input 
+            type="radio" 
+            name="opcionLogin" 
+            value="Alumno" 
+            checked={tipoUsuario === "Alumno"}
+            onChange={onOptionChange}
+          />
         </label>
         <br/>
         <br/>
         <label>
           Soy Administrador
-          <input type="radio" name="opcionAdmin" value="perfil" checked={() => setTipoUsuario("Administrador")}/>
+          <input 
+            type="radio" 
+            name="opcionLogin" 
+            value="Administrador"
+            checked={tipoUsuario === "Administrador"}
+            onChange={onOptionChange}
+          />
         </label>
       </p>
   </>
