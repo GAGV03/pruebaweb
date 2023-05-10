@@ -1,12 +1,25 @@
 import './App.css';
+import React, {useState} from 'react';
 
 export default function App() {
+  let forma;
+  if(Primeraforma.tipoUsuario === "Administrador"){
+    forma = <FormaAdmin/>
+  } else {
+    forma = <FormaAlumno/>
+  }
   return (
-    <primeraForma />
+   <>
+   <Primeraforma/>
+   <div>
+      {forma}
+   </div>
+   </>
   );
 }
 
-function primeraForma(){
+function Primeraforma(){
+const [tipoUsuario,setTipoUsuario] = useState("inidentificado");
   return (
     <>
     <h1>Página Prueba</h1>
@@ -14,47 +27,23 @@ function primeraForma(){
       <p>
         <label>
           Soy Alumno
-          <input type="radio" name="opcionAlumno" value="option1"/>
+          <input type="radio" name="opcionAlumno" value="perfil" checked={() => setTipoUsuario("Alumno")}/>
         </label>
         <br/>
         <br/>
         <label>
           Soy Administrador
-          <input type="radio" name="opcionAdmin" value="option2"/>
+          <input type="radio" name="opcionAdmin" value="perfil" checked={() => setTipoUsuario("Administrador")}/>
         </label>
       </p>
   </>
   );
 }
 
-const personaje = {
-  nombre : 'Gustavo Gutiérrez',
-  imagen : 'https://m.media-amazon.com/images/I/71vLOiPjrYL._AC_SX679_.jpg',
-  edad: 20,
-  tamañoImagen:30
-}
-
-function Perfil(){
-  return(
-    <>
-      <h2>{personaje.nombre}</h2>
-      <img
-          className='imagenPerfil'
-          src={personaje.imagen}
-          alt={'FotoDe'+personaje.nombre}
-          style={{
-            width:personaje.tamañoImagen,
-            height:personaje.tamañoImagen
-          }}
-      />
-    </>
-  );
-}
-
-function formaUsuario(){
+function FormaAlumno(){
   return(
     <form>
-      <h3>Forma para el Usuario</h3>
+      <h3>Forma para el Alumno</h3>
       <label>
         Nombre:
         <input type='text' name='nombre'/>
@@ -67,7 +56,7 @@ function formaUsuario(){
   );
 }
 
-function formaAdmin(){
+function FormaAdmin(){
   return(
     <form>
       <h3>Forma para el Administrador</h3>
@@ -83,8 +72,4 @@ function formaAdmin(){
   );
 }
 
-function MyButton(){
-  return (<button>Soy un boton</button>
-  );
-}
 
