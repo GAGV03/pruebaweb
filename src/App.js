@@ -1,61 +1,23 @@
 import './App.css';
-import React, {useState} from 'react';
-
-
+import React, {useContext, useState} from 'react';
+import {PruebaContexto}  from './Formulario';
+import Formulario from './Formulario'
 
 export default function App() {
+  const tipoU = useContext(PruebaContexto);
   let forma;
-  if(Primeraforma.tipoUsuario === "Administrador"){
+  if({tipoU} === "Administrador"){
     forma = <FormaAdmin/>
-  } else if(Primeraforma.tipoUsuario === "Alumno"){
+  } else if ({tipoU} === "Alumno"){
     forma = <FormaAlumno/>
   }
   return (
    <>
-   <Primeraforma/>
-   <div>
-      {forma}
-   </div>
+      <Formulario/>
+      <div>
+          {forma}
+      </div>
    </>
-  );
-}
-
-function Primeraforma(){
-const [tipoUsuario,setTipoUsuario] = useState("inidentificado");
-
-const onOptionChange = e =>{
-  setTipoUsuario(e.target.value)
-}
-
-  return (
-    <>
-    <h1>Página Prueba</h1>
-    <hr />
-      <p>
-        <label>
-          Soy Alumno
-          <input 
-            type="radio" 
-            name="opcionLogin" 
-            value="Alumno" 
-            checked={tipoUsuario === "Alumno"}
-            onChange={onOptionChange}
-          />
-        </label>
-        <br/>
-        <br/>
-        <label>
-          Soy Administrador
-          <input 
-            type="radio" 
-            name="opcionLogin" 
-            value="Administrador"
-            checked={tipoUsuario === "Administrador"}
-            onChange={onOptionChange}
-          />
-        </label>
-      </p>
-  </>
   );
 }
 
