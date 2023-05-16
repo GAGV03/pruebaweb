@@ -1,23 +1,36 @@
 import './App.css';
-import React, {useContext, useState} from 'react';
-import {PruebaContexto}  from './Formulario';
+import React from 'react';
 import Formulario from './Formulario'
+import { userForm } from './Formulario';
+//import { useContext } from 'react';
+
 
 export default function App() {
-  const tipoU = useContext(PruebaContexto);
-  let forma;
-  if({tipoU} === "Administrador"){
-    forma = <FormaAdmin/>
-  } else if ({tipoU} === "Alumno"){
-    forma = <FormaAlumno/>
-  }
+  const tipoU = React.useContext(userForm);
   return (
-   <>
-      <Formulario/>
-      <div>
-          {forma}
-      </div>
-   </>
+  <userForm.Provider value = {tipoU}>
+  <>
+    <Formulario/>
+    <div>
+        <DisplayForma />
+    </div>
+  </>
+  </userForm.Provider>
+  );
+}
+
+function DisplayForma(){
+  let forma;
+  const tipoU = React.useContext(userForm);
+    if(tipoU === "Alumno"){
+      forma = <FormaAlumno/>
+    }else if(tipoU === "Administrador"){
+      forma = <FormaAdmin/>
+    }
+  return(
+    <div>
+        {forma}
+    </div>
   );
 }
 
