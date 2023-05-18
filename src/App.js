@@ -1,8 +1,8 @@
 import './App.css';
 import React from 'react';
-import Formulario from './Formulario'
-import { userForm } from './Formulario';
-//import { useContext } from 'react';
+import Formulario from './formulario.jsx';
+import { userForm } from './formulario.jsx';
+
 
 
 export default function App() {
@@ -25,7 +25,7 @@ function DisplayForma(){
     if(tipoU === "Alumno"){
       forma = <FormaAlumno/>
     }else if(tipoU === "Administrador"){
-      forma = <FormaAdmin/>
+      forma = <FormaAdmin />
     }
   return(
     <div>
