@@ -1,36 +1,24 @@
 import './App.css';
-import React from 'react';
-import Formulario from './formulario.jsx';
-import { userForm } from './formulario.jsx';
-
-
+import React, { useState } from 'react';
 
 export default function App() {
-  const tipoU = React.useContext(userForm);
-  return (
-  <userForm.Provider value = {tipoU}>
-  <>
-    <Formulario/>
-    <div>
-        <DisplayForma />
-    </div>
-  </>
-  </userForm.Provider>
-  );
-}
-
-function DisplayForma(){
+  const [tipoUsuario, setTipoUsuario] = useState();
   let forma;
-  const tipoU = React.useContext(userForm);
-    if(tipoU === "Alumno"){
-      forma = <FormaAlumno/>
-    }else if(tipoU === "Administrador"){
-      forma = <FormaAdmin />
-    }
+  <Formulario tipoUsuario = {tipoUsuario}/>
+  if(tipoUsuario==="Alumno"){
+    forma = <FormaAlumno/>
+  } else if (<Formulario tipoUsuario={tipoUsuario}/>==="Administrador"){
+    forma = <FormaAdmin />
+  }
   return(
+    <>
+    <div>
+      <Formulario/>
+    </div>
     <div>
         {forma}
     </div>
+    </>
   );
 }
 
@@ -66,4 +54,38 @@ function FormaAdmin(){
   );
 }
 
+function Formulario () {
 
+  const [tipoUsuario, setTipoUsuario] = useState(null);
+  
+  return (
+      <>
+      <h1>Página Prueba</h1>
+      <hr />
+      <p>
+          <label>
+          Soy Alumno
+          <input 
+              type="radio" 
+              name="opcionLogin" 
+              value="Alumno" 
+              checked={tipoUsuario === "Alumno"}
+              onChange={e => setTipoUsuario(e.target.value)}
+          />
+          </label>
+          <br/>
+          <br/>
+          <label>
+          Soy Administrador
+          <input 
+              type="radio" 
+              name="opcionLogin" 
+              value="Administrador"
+              checked={tipoUsuario === "Administrador"}
+              onChange={e => setTipoUsuario(e.target.value)}
+          />
+          </label>
+      </p>
+  </>
+  );
+  }
