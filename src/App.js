@@ -1,25 +1,38 @@
 import './App.css';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { createContext } from 'react';
+
+export const formsContext = createContext(null);
 
 export default function App() {
-  const [tipoUsuario, setTipoUsuario] = useState();
-  let forma;
-  <Formulario tipoUsuario = {tipoUsuario}/>
-  if(tipoUsuario==="Alumno"){
-    forma = <FormaAlumno/>
-  } else if (<Formulario tipoUsuario={tipoUsuario}/>==="Administrador"){
-    forma = <FormaAdmin />
-  }
+  
   return(
     <>
     <div>
       <Formulario/>
-    </div>
-    <div>
-        {forma}
+      <br/>
+
+      <DisplayForm/>
     </div>
     </>
   );
+}
+
+function DisplayForm(){
+  const usuario = useContext(formsContext);
+  let forma;
+
+  if(usuario === "Alumno"){
+    forma = <FormaAlumno/>
+  } else if(usuario === "Administrador"){
+    forma = <FormaAdmin/>
+  }
+
+  return(
+    <>
+    {forma}
+    </>
+  )
 }
 
 function FormaAlumno(){
@@ -57,7 +70,7 @@ function FormaAdmin(){
 function Formulario () {
 
   const [tipoUsuario, setTipoUsuario] = useState(null);
-  
+
   return (
       <>
       <h1>Página Prueba</h1>
@@ -86,6 +99,9 @@ function Formulario () {
           />
           </label>
       </p>
+      <formsContext.Provider value={tipoUsuario}>
+        <displayForm/>
+      </formsContext.Provider>
   </>
   );
   }
